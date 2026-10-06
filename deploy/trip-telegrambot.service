@@ -1,0 +1,22 @@
+[Unit]
+Description=Telegram Trip Booking Bot
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=tripbot
+Group=tripbot
+WorkingDirectory=/opt/trip-telegrambot
+EnvironmentFile=/etc/trip-telegrambot.env
+ExecStart=/opt/trip-telegrambot/.venv/bin/python /opt/trip-telegrambot/ticket_bot.py
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/opt/trip-telegrambot
+
+[Install]
+WantedBy=multi-user.target
